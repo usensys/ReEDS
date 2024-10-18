@@ -1,0 +1,23 @@
+Package: ReEDS
+Title: Reproduction of ReEDS model using energyRt model generator
+Version: 0.0.1.9000
+Authors@R: 
+    person("Oleg", "Lugovoy", 
+          email = "usensys@optimalsolution.dev", 
+          role = c("aut", "cre"), 
+          comment = c(ORCID = "0000-0001-5546-9875"))
+Description: This experimental package reproduces the ReEDS model, a long-term capacity expansion model for the U.S. electricity sector, using the energyRt interface. The goal is to recreate the key structure and assumptions used in the ReEDS model while adding them to the USENSYS repository as a ready to use option for energyRt and R users. The ReEDS model, developed by NREL, is open-source and licensed under GPL-3.0. This package is independent of the official ReEDS model and its developers but follows the same license using the copyleft principle. It is intended for research purposes only and remains a work in progress as the reproduction effort continues.
+License: GPL (>= 3)
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Imports: 
+    energyRt,
+    sf,
+    usensys
+Suggests: 
+    dplyr,
+    ggplot2
+Depends: 
+    R (>= 2.10)
+LazyData: true

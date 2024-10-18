@@ -1,0 +1,92 @@
+---
+output: github_document
+editor_options: 
+  chunk_output_type: console
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  fig.retina = TRUE,
+  out.width = "100%"
+)
+```
+
+# Reproduction of NREL's ReEDS-2.0 in energyRt
+
+<!-- badges: start -->
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+<!-- badges: end -->
+
+The goal of ReEDS is to recreate the National Renewable Energy Laboratory's [Regional Energy Deployment System (ReEDS)](https://github.com/NREL/ReEDS-2.0) model in [energyRt](https://energyrt.org/), a model generator and make it available for R, energyRt, and USENSYS users as an option to apply ReEDS data or the reproduced model itself to their projects.\
+The repository is organized as an R-package and will contain the following components:\
+1. Data: ReEDS data and data processing functions.\
+2. Model: reproduced in `energyRt` model objects using the ReEDS data.\
+3. Maps: spatial data for the ReEDS model.\
+4. Reporting functions, methods, and examples.\
+
+The package will not be published on CRAN due to the data size limits.\
+
+
+## Installation
+
+The package is under development and not yet ready for use.
+You can install the development version of ReEDS from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("pak")
+pak::pak("usensys/ReEDS")
+```
+
+## Example
+
+Currenlty, the package contains the ReEDS-2.0 regions and transmission maps.\
+
+```{r example, fig.height=7, fig.cap="ReEDS-2.0 regions."}
+# library(usensys)
+library(ReEDS)
+library(sf)
+library(ggplot2)
+
+# maps from ReEDS-2.0 repository, stored in `reed_maps` list-object
+#see `?reeds_maps` for details
+reeds_maps$US_CAN_MEX_PCA_sf |> st_drop_geometry() |> head()
+
+plot(reeds_maps$US_CAN_MEX_PCA_sf["rb"])
+```
+
+```{r, fig.height=7, fig.cap="ReEDS-2.0 existing transmission routes and endpoints."}
+ggplot() +
+  geom_sf(data = reeds_maps$US_CAN_MEX_PCA_sf, color = "grey", fill = "wheat") +
+  geom_sf(data = reeds_maps$transmission_routes_sf, color = "dodgerblue") +
+  geom_sf(data = reeds_maps$transmission_endpoints_sf, color = "red", size = .5) +
+  theme_void()
+
+```
+
+```{r, fig.height=7, fig.cap="ReEDS-2.0 new transmission routes"}
+ggplot() +
+  geom_sf(data = reeds_maps$US_CAN_MEX_PCA_sf, 
+          color = "grey", fill = "wheat") +
+  geom_sf(data = reeds_maps$transmission_routes_500kV, 
+          aes(color = voltage, linewidth = voltage),
+          alpha = .75) +
+  scale_color_manual(
+    values = c("500kV AC" = "dodgerblue", "500kV DC" = "red"), 
+    name = "") +
+  scale_linewidth_manual(
+    values = c("500kV AC" = 2, "500kV DC" = .5), 
+    name = "") +
+  geom_sf(data = reeds_maps$transmission_endpoints_sf, 
+          color = "gold", size = .5) +
+  theme_void()
+```
+
+## References
+ReEDS-2.0 repository: [NREL/ReEDS-2.0](https://github.com/NREL/ReEDS-2.0)
+USENSYS docs and repository: [usensys](https://www.usensys.org/)
+energyRt docs and repository: [energyRt](https://energyrt.org/)
