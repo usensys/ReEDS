@@ -12,6 +12,7 @@ knitr::opts_chunk$set(
   comment = "#>",
   fig.path = "man/figures/README-",
   fig.retina = TRUE,
+  dpi = 300,
   out.width = "100%"
 )
 ```
@@ -46,7 +47,7 @@ pak::pak("usensys/ReEDS")
 
 Currenlty, the package contains the ReEDS-2.0 regions and transmission maps.\
 
-```{r example, fig.height=7, fig.cap="ReEDS-2.0 regions."}
+```{r example, fig.height=5, fig.cap="ReEDS-2.0 regions."}
 # library(usensys)
 library(ReEDS)
 library(sf)
@@ -59,7 +60,7 @@ reeds_maps$US_CAN_MEX_PCA_sf |> st_drop_geometry() |> head()
 plot(reeds_maps$US_CAN_MEX_PCA_sf["rb"])
 ```
 
-```{r, fig.height=7, fig.cap="ReEDS-2.0 existing transmission routes and endpoints."}
+```{r, fig.height=5, fig.cap="ReEDS-2.0 existing transmission routes and endpoints."}
 ggplot() +
   geom_sf(data = reeds_maps$US_CAN_MEX_PCA_sf, color = "grey", fill = "wheat") +
   geom_sf(data = reeds_maps$transmission_routes_sf, color = "dodgerblue") +
@@ -68,7 +69,7 @@ ggplot() +
 
 ```
 
-```{r, fig.height=7, fig.cap="ReEDS-2.0 new transmission routes"}
+```{r, fig.height=5, fig.cap="ReEDS-2.0 new transmission routes"}
 ggplot() +
   geom_sf(data = reeds_maps$US_CAN_MEX_PCA_sf, 
           color = "grey", fill = "wheat") +
@@ -87,6 +88,6 @@ ggplot() +
 ```
 
 ## References
-ReEDS-2.0 repository: [NREL/ReEDS-2.0](https://github.com/NREL/ReEDS-2.0)
-USENSYS docs and repository: [usensys](https://www.usensys.org/)
-energyRt docs and repository: [energyRt](https://energyrt.org/)
+ReEDS-2.0 repository: [NREL/ReEDS-2.0](https://github.com/NREL/ReEDS-2.0)\
+USENSYS docs and repository: [usensys](https://www.usensys.org/)\
+energyRt docs and repository: [energyRt](https://energyrt.org/)\

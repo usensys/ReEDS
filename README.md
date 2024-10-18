@@ -117,6 +117,6 @@ ReEDS-2.0 new transmission routes
 ## References
 
 ReEDS-2.0 repository:
-[NREL/ReEDS-2.0](https://github.com/NREL/ReEDS-2.0) USENSYS docs and
-repository: [usensys](https://www.usensys.org/) energyRt docs and
-repository: [energyRt](https://energyrt.org/)
+[NREL/ReEDS-2.0](https://github.com/NREL/ReEDS-2.0)  
+USENSYS docs and repository: [usensys](https://www.usensys.org/)  
+energyRt docs and repository: [energyRt](https://energyrt.org/)  
